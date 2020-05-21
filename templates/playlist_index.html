@@ -7,7 +7,7 @@
       <h1>Spotify Playlist Creator</h1>
     </a>
     <button class="btn btn-secondary dropdown-toggle mt-4" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Vorhandene Playlist wählen (nur eigene Playlists)
+      Use existing playlist (only own playlists)
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       {% for i in range(0, playlist_amount) %}
@@ -21,7 +21,7 @@
     <form action="/create_playlist" method="POST">
       <div class="form-group">
         <input type="text" placeholder="Playlist Name" id="new_playlist_name" name="new_playlist_name" class="new_playlist_name form-control">
-        <input type="submit" class="btn btn-success mt-2" name="create_playlist" value="neue Playlist erstellen">
+        <input type="submit" class="btn btn-success mt-2" name="create_playlist" value="create new playlist">
       </div>
     </form>
     {% else %}
@@ -29,9 +29,9 @@
       <div class="form-group">
         <input type="text" placeholder="Playlist Name" id="new_playlist_name" name="new_playlist_name" class="new_playlist_name form-control is-invalid">
         <div class="text-danger">
-          Playlist Name darf nicht leer sein!
+          Name of playlist cant be empty!
         </div>
-        <input type="submit" class="btn btn-success mt-2" name="create_playlist" value="neue Playlist erstellen">
+        <input type="submit" class="btn btn-success mt-2" name="create_playlist" value="create new playlist">
       </div>
     </form>
   </div>

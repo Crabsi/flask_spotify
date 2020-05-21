@@ -10,9 +10,9 @@
       <form action="/fill_playlist" method="POST" class="album_form mt-4">
         <img src="{{ album_picture_url_list[loop.index0] }}" alt="">
         <br>
-        {{ album_name_list[loop.index0] }} von {{ album_artist_list[loop.index0] }}
+        {{ album_name_list[loop.index0] }} | {{ album_artist_list[loop.index0] }}
         <br>
-        <button type="submit" class="btn btn-success" name="fill_playlist" value="{{loop.index0}}">Playlist füllen</button>
+        <button type="submit" class="btn btn-success" name="fill_playlist" value="{{loop.index0}}">fill playlist</button>
       </form>
       {% endfor %}
   </div>
