@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+<div class="login_page">
+  <div class="login_page_content">
+    <form action="/sign_in" method="POST">
+      <input type="submit" class="btn btn-success" name="sign_in" value="Mit Spotify anmelden">
+    </form>
+  </div>
+</div>
+{% endblock %}

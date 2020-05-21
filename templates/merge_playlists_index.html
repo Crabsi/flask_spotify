@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+<div class="merge_playlist_index">
+  <div class="merge_playlist_index_content">
+    <a href="/" style="color:white" class="titel">
+      <h1>Spotify Playlist Creator</h1>
+    </a>
+    <form action="/merge_playlists" method="POST">
+      {% for i in range(0, playlist_amount) %}
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="{{loop.index0}}" name="merge_playlist_value" value="{{playlist_id_list[loop.index0]}}">
+        <label class="custom-control-label" for="{{loop.index0}}">{{ playlist_name_list[loop.index0] }}</label>
+      </div>
+      {% endfor %}
+      {% if playlist_error == 0 or playlist_error == None %}
+      <div class="form-group mt-1">
+        <input type="text" placeholder="Playlist Name" id="new_playlist_name" name="new_playlist_name" class="new_playlist_name form-control">
+        <input type="submit" class="btn btn-success mt-2" name="merge_playlists" value="Playlists zusammenführen">
+      </div>
+      {% else %}
+      <div class="form-group mt-1">
+        <input type="text" placeholder="Playlist Name" id="new_playlist_name" name="new_playlist_name" class="new_playlist_name form-control is-invalid">
+        <div class="text-danger">
+          Playlist Name darf nicht leer sein!
+        </div>
+        <input type="submit" class="btn btn-success" name="merge_playlists" value="Playlists zusammenführen">
+      </div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock %}

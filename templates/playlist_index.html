@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+<div class="playlist_index">
+  <div class="playlist_index_content">
+    <a href="/" style="color:white" class="titel">
+      <h1>Spotify Playlist Creator</h1>
+    </a>
+    <button class="btn btn-secondary dropdown-toggle mt-4" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Vorhandene Playlist wählen (nur eigene Playlists)
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for i in range(0, playlist_amount) %}
+      <a class="dropdown-item" name="select_playlist" href="/select_playlist?playlist_number={{loop.index0}}">{{ playlist_name_list[loop.index0] }}</a>
+      {% endfor %}
+    </div>
+    <div class="mt-1">
+      <h6>oder</h6>
+    </div>
+    {% if playlist_error == 0 or playlist_error == None %}
+    <form action="/create_playlist" method="POST">
+      <div class="form-group">
+        <input type="text" placeholder="Playlist Name" id="new_playlist_name" name="new_playlist_name" class="new_playlist_name form-control">
+        <input type="submit" class="btn btn-success mt-2" name="create_playlist" value="neue Playlist erstellen">
+      </div>
+    </form>
+    {% else %}
+    <form action="/create_playlist" method="POST">
+      <div class="form-group">
+        <input type="text" placeholder="Playlist Name" id="new_playlist_name" name="new_playlist_name" class="new_playlist_name form-control is-invalid">
+        <div class="text-danger">
+          Playlist Name darf nicht leer sein!
+        </div>
+        <input type="submit" class="btn btn-success mt-2" name="create_playlist" value="neue Playlist erstellen">
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

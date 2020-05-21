@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+<div class="add_songs">
+  <a href="/" style="color:white" class="titel">
+    <h1>Spotify Playlist Creator</h1>
+  </a>
+  <div class="album_list">
+      {% for i in range(0, item_amount) %}
+      <form action="/fill_playlist" method="POST" class="album_form mt-4">
+        <img src="{{ album_picture_url_list[loop.index0] }}" alt="">
+        <br>
+        {{ album_name_list[loop.index0] }} von {{ album_artist_list[loop.index0] }}
+        <br>
+        <button type="submit" class="btn btn-success" name="fill_playlist" value="{{loop.index0}}">Playlist füllen</button>
+      </form>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Album Search{% endblock %}
+{% block body %}
+<div class="search_album">
+  <div class="search_album_content">
+    <a href="/" style="color:white" class="titel">
+      <h1>Spotify Playlist Creator</h1>
+    </a>
+    <form action="/find_album" method="POST">
+      <div class="mt-4 input form-group">
+        <input name="autocomplete" type="text" id="autocomplete" class="autocomplete form-control"
+          placeholder="Album Name und Künstler" />
+        <input type="submit" class="btn btn-success mt-2" name="add_album" value="Album suchen">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $("#autocomplete").autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{url_for('autocomplete')}}", {
+          q: request.term, // in flask, "q" will be the argument to look for using request.args
+        }, function (data) {
+          response(data.albums); // matching_results from jsonify
+        });
+      },
+      minLength: 3,
+      select: function (event, ui) {
+        console.log(ui.item.value); // not in your question, but might help later
+      }
+    });
+  })
+
+</script>
+{% endblock %}
